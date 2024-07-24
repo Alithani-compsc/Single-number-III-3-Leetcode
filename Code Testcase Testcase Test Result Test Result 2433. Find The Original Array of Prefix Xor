@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+
+class Solution {
+    public int[] findArray(int[] pref) {
+        ArrayList<Integer> list = new ArrayList<>();
+       list.add(pref[0]);
+        for(int i = 1; i<pref.length;i++){
+            //list.add(list0.get(i-1) ^ list0.get(i));
+            list.add(pref[i-1]^pref[i]);
+        }
+
+        // Convert ArrayList<Integer> to int[]
+        int[] result = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+        
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] pref = {1, 2, 3, 4};
+        
+        // Call the method and store the returned int[] in a variable
+        int[] result = sol.findArray(pref);
+
+        // Print the result array
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+}
