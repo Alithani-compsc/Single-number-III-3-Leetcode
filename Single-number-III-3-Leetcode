@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        ArrayList<Integer> newArray = new ArrayList<>();
+
+        // Sort the array
+        Arrays.sort(nums);
+
+        // Add an initial value to newArray
+        newArray.add(0);
+        for (int i = 0; i < nums.length; i++) {
+            newArray.add(nums[i]);
+        }
+        newArray.add(0);
+
+
+
+      for(int i = 1; i < newArray.size()- 1; i++){
+
+        if( newArray.get(i).intValue() == newArray.get(i - 1).intValue() ) {
+
+        newArray.set(i,0);
+       newArray.set(i-1,0);
+        }
+       }
+ArrayList<Integer> newArray2 = new ArrayList<>();
+
+       for (int i=0;i<newArray.size();i++){
+        if(newArray.get(i) != 0){
+            newArray2.add(newArray.get(i));
+        }
+       }
+
+       if (newArray2.size()==1){
+        newArray2.add(0);
+       }
+
+       
+
+        // Convert ArrayList<Integer> to int[]
+        int[] result = new int[newArray2.size()];
+        for (int i = 0; i < newArray2.size(); i++) {
+            result[i] = newArray2.get(i);
+        }
+
+        return result;
+    }
+//time complexity O(NLogN)
+//space complexity O(N)
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] nums = {1, 2, 3, 4};
+        int[] result = sol.singleNumber(nums);
+
+        // Print the result array
+        for (int i : result) {
+            System.out.print(i + " ");
+        }
+    }
+}
